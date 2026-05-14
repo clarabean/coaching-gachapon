@@ -41,7 +41,7 @@ const DOMAINS = {
     title: "Creation/Choice",
     icon: <Sparkles className="w-5 h-5" />,
     color: "#4338CA", 
-    buttonLabel: "BREAK SOME BARRIERS.",
+    buttonLabel: "LET'S BREAK SOME BARRIERS.",
     questions: [
       "If you were to reinvent yourself tomorrow, what would be the first change?",
       "What past limitation is currently keeping you from a new possibility?",
@@ -242,9 +242,9 @@ export default function App() {
                  <div className="text-[8px] font-bold text-indigo-200 mt-1 uppercase tracking-tighter">Slot</div>
                </div>
 
-               <div className="relative pt-6">
+               <div className="relative pt-8">
                  {!isSpinning && (
-                    <div className="absolute -top-1 left-1/2 -translate-x-1/2 text-[9px] font-bold text-amber-500 tracking-[0.2em] whitespace-nowrap animate-pulse uppercase z-20">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 text-[9px] font-bold text-amber-500 tracking-[0.2em] whitespace-nowrap animate-pulse uppercase z-20">
                       Turn to Start
                     </div>
                   )}

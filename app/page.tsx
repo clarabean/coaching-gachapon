@@ -3,10 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { X, Trophy, Zap, Heart, Users, Sparkles, TrendingUp, Wallet, HelpCircle } from 'lucide-react';
 
-/**
- * Live Your Mark Gachapon Tool - Next.js Ready
- */
-
+// --- DATA: 56 Coaching Questions (8 Domains) ---
 const DOMAINS = {
   ADVANCEMENT: {
     title: "Advancement",
@@ -138,12 +135,12 @@ const DOMAINS = {
   }
 };
 
-const App = () => {
+export default function App() {
   const [isSpinning, setIsSpinning] = useState(false);
   const [showResult, setShowResult] = useState(false);
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<any>(null);
   const [leverAngle, setLeverAngle] = useState(0);
-  const [balls, setBalls] = useState([]);
+  const [balls, setBalls] = useState<any[]>([]);
 
   useEffect(() => {
     const initialBalls = Array.from({ length: 20 }).map((_, i) => ({
@@ -163,7 +160,7 @@ const App = () => {
 
     const domainKeys = Object.keys(DOMAINS);
     const randomKey = domainKeys[Math.floor(Math.random() * domainKeys.length)];
-    const domain = DOMAINS[randomKey];
+    const domain = (DOMAINS as any)[randomKey];
     const randomQuestion = domain.questions[Math.floor(Math.random() * domain.questions.length)];
 
     setTimeout(() => {
@@ -188,7 +185,6 @@ const App = () => {
   return (
     <div 
       className="min-h-screen bg-[#0F172A] relative flex flex-col items-center justify-start py-12 px-6 text-white"
-      style={{ fontFamily: "'Jost', sans-serif" }}
     >
       <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700;900&display=swap" rel="stylesheet" />
       
@@ -198,15 +194,15 @@ const App = () => {
         <div className="absolute inset-0 opacity-[0.03]" style={{backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '40px 40px'}}></div>
       </div>
 
-      <div className="relative z-10 text-center mb-10 animate-in fade-in slide-in-from-top-4 duration-1000">
-        <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-amber-500 mb-2 drop-shadow-sm px-4 leading-snug uppercase tracking-widest">
+      <div className="relative z-10 text-center mb-8 animate-in fade-in slide-in-from-top-4 duration-1000">
+        <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-amber-500 mb-2 drop-shadow-sm px-4 leading-snug">
           Spin for today's coaching focus
         </h1>
-        <div className="w-16 h-1 bg-amber-500/50 mx-auto rounded-full"></div>
+        <div className="w-12 h-1 bg-amber-500/50 mx-auto rounded-full"></div>
       </div>
 
       <div className="relative z-10 w-full max-w-[340px] aspect-[3/4.4] mb-12">
-        <div className="w-full h-full bg-white rounded-[50px] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.9)] border-[12px] border-[#1E1B4B] overflow-hidden flex flex-col relative">
+        <div className="w-full h-full bg-white rounded-[50px] shadow-[0_30px_60px_-12px_rgba(0,0,0,0.8)] border-[12px] border-[#1E1B4B] overflow-hidden flex flex-col relative">
           
           <div className="relative h-[58%] bg-[#F8FAFC] border-b-[12px] border-[#1E1B4B] overflow-hidden">
             <div className="absolute top-6 left-6 z-20 bg-[#1E1B4B] text-[#FDE68A] text-[10px] font-black px-3 py-1 rounded-md rotate-[-3deg] shadow-lg">
@@ -217,7 +213,7 @@ const App = () => {
             </div>
 
             <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-white/10 z-10 pointer-events-none"></div>
-            <div className="absolute inset-4 rounded-[40px] bg-slate-200/30 overflow-hidden shadow-inner">
+            <div className="absolute left-4 right-4 top-4 bottom-4 rounded-[40px] bg-slate-200/30 overflow-hidden shadow-inner">
               {balls.map((ball) => (
                 <div
                   key={ball.id}
@@ -238,11 +234,12 @@ const App = () => {
           </div>
 
           <div className="flex-1 bg-[#1E1B4B] p-4 flex flex-col items-center justify-between relative">
+            
             <div className="flex w-full items-center justify-around mt-1">
-               <div className="w-10 h-14 bg-indigo-900/50 rounded-xl border border-indigo-700/50 flex flex-col items-center justify-center gap-1">
+               <div className="w-10 h-14 bg-indigo-900/50 rounded-xl border border-indigo-700/50 flex flex-col items-center justify-center gap-1 shadow-inner">
                  <div className="w-5 h-1 bg-indigo-400 rounded"></div>
-                 <div className="w-3 h-1 bg-indigo-500 rounded"></div>
-                 <div className="text-[8px] font-bold text-indigo-200 mt-1 uppercase">Slot</div>
+                 <div className="w-3 h-1 bg-indigo-200 rounded"></div>
+                 <div className="text-[8px] font-bold text-indigo-200 mt-1 uppercase tracking-tighter">Slot</div>
                </div>
 
                <div className="relative pt-6">
@@ -269,13 +266,13 @@ const App = () => {
                  </div>
                </div>
 
-               <div className="w-10 h-10 bg-indigo-900/50 border-4 border-indigo-700 rounded-full shadow-inner flex flex-col items-center justify-center relative">
-                  <div className="w-2 h-2 bg-indigo-300 rounded-full"></div>
-                  <div className="absolute -bottom-4 text-[8px] font-bold text-indigo-200 uppercase">Return</div>
+               <div className="w-10 h-10 bg-indigo-50 border-4 border-indigo-200 rounded-full shadow-inner flex flex-col items-center justify-center relative">
+                  <div className="w-2 h-2 bg-indigo-600 rounded-full"></div>
+                  <div className="absolute -bottom-4 text-[8px] font-bold text-indigo-300 uppercase">Return</div>
                </div>
             </div>
 
-            <div className="w-32 h-10 bg-black rounded-t-[20px] border-t-8 border-x-8 border-indigo-950 flex items-center justify-center overflow-hidden shadow-inner mt-4">
+            <div className="w-32 h-10 bg-black rounded-t-[20px] border-t-8 border-x-8 border-slate-950 flex items-center justify-center overflow-hidden shadow-inner mt-4">
                {isSpinning ? (
                  <div className="w-8 h-8 bg-white rounded-full animate-bounce shadow-[0_0_20px_rgba(255,255,255,0.6)]"></div>
                ) : (
@@ -290,7 +287,7 @@ const App = () => {
         <div className="fixed inset-0 z-50 flex items-start justify-center p-4 overflow-y-auto bg-[#0F172A]/95 backdrop-blur-xl animate-in fade-in duration-300">
           <div className="fixed inset-0 cursor-pointer" onClick={handleClose}></div>
 
-          <div className="relative my-auto bg-white w-full max-w-md rounded-[50px] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.6)] border-b-[12px] border-amber-500 animate-in zoom-in-95 duration-500">
+          <div className="relative my-auto bg-white w-full max-w-md rounded-[50px] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.5)] border-b-[12px] border-amber-500 animate-in zoom-in-95 duration-500">
             <button 
               onClick={handleClose}
               className="absolute top-6 right-6 p-3 bg-slate-100 hover:bg-slate-200 rounded-full transition-all z-50 shadow-md group"
@@ -306,12 +303,12 @@ const App = () => {
                   {result.icon}
                 </div>
                 <div>
-                  <h2 className="text-2xl font-black text-[#1E1B4B] tracking-tight leading-none uppercase">{result.domain}</h2>
-                  <p className="text-[11px] text-amber-600 font-bold uppercase tracking-[0.2em] mt-2">Daily Insight</p>
+                  <h2 className="text-2xl font-black text-[#1E1B4B] tracking-tight leading-none">{result.domain}</h2>
+                  <p className="text-[11px] text-amber-600 font-bold uppercase tracking-[0.2em] mt-2">Coaching Focus</p>
                 </div>
               </div>
 
-              <div className="flex flex-col items-center mb-8 bg-slate-50 p-8 rounded-[40px] border-2 border-dashed border-slate-200 shadow-inner">
+              <div className="flex flex-col items-center mb-8 bg-slate-50 p-8 rounded-[40px] border-2 border-dashed border-slate-200">
                 <div className="text-center">
                   <p className="text-xl sm:text-2xl font-bold text-[#1E1B4B] leading-snug">
                     "{result.question}"
@@ -319,14 +316,14 @@ const App = () => {
                 </div>
               </div>
 
-              <div className="bg-amber-50/80 rounded-[30px] p-6 border-2 border-amber-100 shadow-sm mb-6">
+              <div className="bg-amber-50/80 rounded-[30px] p-6 border-2 border-amber-100 shadow-sm mb-4">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center shadow-md">
                     <Sparkles className="w-5 h-5 text-white" />
                   </div>
-                  <span className="text-[12px] font-bold text-amber-700 uppercase tracking-widest">Coaching Wisdom</span>
+                  <span className="text-[12px] font-bold text-amber-700 uppercase tracking-widest">Wisdom</span>
                 </div>
-                <p className="text-slate-700 font-medium leading-relaxed text-[13px]">
+                <p className="text-slate-700 font-medium leading-relaxed text-[12px]">
                   {result.tip}
                 </p>
               </div>
@@ -343,16 +340,16 @@ const App = () => {
       )}
 
       <div className="relative z-10 text-center pb-8 group mt-auto">
-        <div className="flex justify-center gap-3 mb-6">
+        <div className="flex justify-center gap-3 mb-6 transition-all group-hover:gap-4">
            {Object.values(DOMAINS).map((d, i) => (
              <div 
                key={i} 
                className="w-2.5 h-2.5 rounded-full shadow-lg" 
-               style={{ backgroundColor: d.color }}
+               style={{ backgroundColor: (d as any).color }}
              ></div>
            ))}
         </div>
-        <p className="text-[11px] sm:text-[12px] font-bold tracking-[0.1em] uppercase text-indigo-300/60 px-4 max-w-xs mx-auto leading-relaxed">
+        <p className="text-[11px] sm:text-[12px] font-bold tracking-[0.1em] uppercase text-indigo-300/60 transition-colors group-hover:text-indigo-200 px-4 max-w-xs mx-auto leading-relaxed">
           Live Your Mark. © & Executive Coach International © 2026
         </p>
       </div>
@@ -375,6 +372,4 @@ const App = () => {
       `}} />
     </div>
   );
-};
-
-export default App;
+}
